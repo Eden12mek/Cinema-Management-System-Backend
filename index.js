@@ -18,7 +18,7 @@ require('dotenv').config();
 require('./db');
 
 app.use(bodyParser.json());
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', , 'https://checkout.chapa.co'];
 app.use(
     cors({
         origin: function (origin, callback) {

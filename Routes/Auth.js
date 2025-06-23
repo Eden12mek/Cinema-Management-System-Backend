@@ -70,7 +70,7 @@ router.post("/register", async (req, res, next) => {
       password,
       email,
       phoneNumber,
-      city,
+      city
     });
 
     await newUser.save(); // Await the save operation

@@ -160,7 +160,7 @@ router.post('/addmoviescheduletoscreen', adminTokenHandler, async (req, res, nex
 
 
 // user access
-router.post('/bookticket', authTokenHandler, async (req, res, next) => {
+router.post('/bookticket',  authTokenHandler, async (req, res, next) => {
     try {
         const { showTime, showDate, movieId, screenId, seats, totalPrice, paymentId, paymentType } = req.body;
         console.log(req.body);
@@ -302,15 +302,14 @@ router.get('/screensbycity/:city', async (req, res, next) => {
         next(err); // Pass any errors to the error handling middleware
     }
 });
-router.get('/screensbymovieschedule/:city/:date/:movieid', async (req, res, next) => {
+router.get('/screensbymovieschedule/:date/:movieid', async (req, res, next) => {
     try {
-        const city = req.params.city.toLowerCase();
+        // const city = req.params.city.toLowerCase();
         const date = req.params.date;
         const movieId = req.params.movieid;
 
         // Retrieve screens for the specified city
-        const screens = await Screen.find({ city });
-
+        const screens = await Screen.find({});
         // Check if screens were found
         if (!screens || screens.length === 0) {
             return res.status(404).json(createResponse(false, 'No screens found in the specified city', null));
@@ -388,7 +387,7 @@ router.get('/schedulebymovie/:screenid/:date/:movieid', async (req, res, next) =
 });
 
 
-router.get('/getuserbookings' , authTokenHandler , async (req , res , next) => {
+router.get('/getuserbookings' ,  async (req , res , next) => {
     try {
         const user = await User.findById(req.userId).populate('bookings');
         if(!user){
@@ -413,7 +412,7 @@ router.get('/getuserbookings' , authTokenHandler , async (req , res , next) => {
     }
 })
 
-router.get('/getuserbookings/:id' , authTokenHandler , async (req , res , next) => {
+router.get('/getuserbookings/:id' ,  async (req , res , next) => {
     try {
         const bookingId = req.params.id;
         const booking = await Booking.findById(bookingId);

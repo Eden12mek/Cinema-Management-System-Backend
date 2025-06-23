@@ -12,7 +12,7 @@ const seedRoles = async () => {
             useUnifiedTopology: true
         });
 
-        const roles = ['Admin', 'Manager', 'Event Organizer', 'Help Desk'];
+        const roles = ['Admin', 'Manager', 'Organizer', 'Help Desk'];
 
         for (const roleName of roles) {
             const exists = await Role.findOne({ roleName });
